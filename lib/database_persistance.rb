@@ -2,8 +2,16 @@ require 'pg'
 
 class DatabasePersistance
   def initialize(logger)
-    @db = PG.connect(dbname: 'todos')
+    if Sinatra::Base.production?
+      @db = PG.connect(ENV["DATABASE_URL"])
+    else
+      @db = PG.connect(dbname: "todos")
+    end
     @logger = logger
+  end
+
+  def disconnect
+    @db.close
   end
 
   def query(sql, *params)
