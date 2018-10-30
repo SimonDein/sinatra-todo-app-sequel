@@ -1,9 +1,7 @@
 require 'bundler/setup'
 require "sinatra"
-require "sinatra/reloader"
 require "sinatra/content_for"
 require "tilt/erubis"
-require 'pry'
 
 require_relative 'lib/database_persistance'
 
@@ -11,6 +9,13 @@ configure do
   enable :sessions
   set :session_secret, 'secret'
   set :erb, :escape_html => true
+end
+
+configure(:development) do
+  require "sinatra/reloader"
+  require 'pry'
+  
+  also_reload 'lib/database_persistance.rb'
 end
 
 helpers do

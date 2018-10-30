@@ -5,7 +5,7 @@ name varchar(50) UNIQUE NOT NULL
 
 CREATE TABLE todos (
          id serial      PRIMARY KEY,
-    list_id int         NOT NULL REFERENCES lists(id),
+    list_id int         NOT NULL REFERENCES lists(id) ON DELETE CASCADE,
        name varchar(50) NOT NULL CHECK (length(name) > 0),
   completed boolean     NOT NULL DEFAULT false
 );
