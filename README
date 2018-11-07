@@ -1,1 +1,1 @@
-Sinatra app for Todo webapp
+[Todo webapp](http://todo-app-sequel.herokuapp.com) made with Sinatra and backed by a Postgresql database
